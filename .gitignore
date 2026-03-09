@@ -144,7 +144,9 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-wdmproject/
+/wdmproject/ 
+
+## Due to same name as venv and project folder name added first slash
 
 # Spyder project settings
 .spyderproject
