@@ -7,6 +7,7 @@ class DataIngestionConfig:
     source_URL: str
     local_data_file: Path
     unzip_dir: Path
+    INGESTION_REPORT: Path
 
 
 @dataclass(frozen=True)
@@ -16,3 +17,4 @@ class DataValidationConfig:
     STATUS_FILE: str
     all_schema: dict
     number_of_columns: int
+    VALIDATION_REPORT: Path

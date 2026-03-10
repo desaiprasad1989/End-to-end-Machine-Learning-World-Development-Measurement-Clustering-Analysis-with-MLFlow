@@ -1,0 +1,71 @@
+{
+    "stage_metadata": {
+        "stage_name": "Data Validation",
+        "stage_status": "Success",
+        "start_time": "2026-03-10 17:24:19.428142",
+        "end_time": "2026-03-10 17:24:22.156122",
+        "stage_duration": 2.72798
+    },
+    "dataset_load": {
+        "status": "Success",
+        "rows": 2704,
+        "columns": 25
+    },
+    "columns_count": {
+        "status": "Success",
+        "expected": 25,
+        "actual": 25
+    },
+    "missing_columns": {
+        "status": "Success",
+        "message": "Missing Columns Check Passed"
+    },
+    "extra_columns": {
+        "status": "Success",
+        "message": "No Extra Columns Found",
+        "data": []
+    },
+    "datatype_mismatch": {
+        "status": "Success",
+        "message": "No Datatype Mismatch Found in Schema"
+    },
+    "missing_values_check": {
+        "status": "Warning",
+        "message": "Missing Values Found.",
+        "columns": {
+            "Birth Rate": 119,
+            "Business Tax Rate": 1281,
+            "CO2 Emissions": 579,
+            "Days to Start Business": 986,
+            "Ease of Business": 2519,
+            "Energy Usage": 919,
+            "GDP": 210,
+            "Health Exp % GDP": 309,
+            "Health Exp/Capita": 309,
+            "Hours to do Tax": 1288,
+            "Infant Mortality Rate": 260,
+            "Internet Usage": 173,
+            "Lending Interest": 824,
+            "Life Expectancy Female": 136,
+            "Life Expectancy Male": 136,
+            "Mobile Phone Usage": 167,
+            "Population 0-14": 220,
+            "Population 15-64": 220,
+            "Population 65+": 220,
+            "Population Urban": 26,
+            "Tourism Inbound": 368,
+            "Tourism Outbound": 471
+        }
+    },
+    "duplicates_check": {
+        "status": "Success",
+        "message": "No Duplicate Rows Found."
+    },
+    "constant_col_check": {
+        "status": "Warning",
+        "message": "Constant Columns Found.",
+        "columns": [
+            "Number of Records"
+        ]
+    }
+}

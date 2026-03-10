@@ -1,0 +1,18 @@
+{
+    "stage_metadata": {
+        "stage_name": "Data Ingestion",
+        "stage_status": "Success",
+        "start_time": "2026-03-10 17:24:16.732704",
+        "end_time": "2026-03-10 17:24:19.400011",
+        "stage_duration": 2.665287
+    },
+    "dataset_download": {
+        "status": "Success",
+        "file_name": "artifacts/data_ingestion/data.zip",
+        "file_size": "~ 354 KB"
+    },
+    "dataset_extraction": {
+        "status": "Success",
+        "message": "File Extracted Successfully."
+    }
+}

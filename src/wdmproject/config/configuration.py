@@ -30,7 +30,8 @@ class ConfigurationManager:
             root_dir=config.root_dir,
             source_URL=config.source_URL,
             local_data_file=config.local_data_file,
-            unzip_dir=config.unzip_dir
+            unzip_dir=config.unzip_dir,
+            INGESTION_REPORT=Path(config.INGESTION_REPORT)
         )
         
         return data_ingestion_config
@@ -52,6 +53,7 @@ class ConfigurationManager:
             STATUS_FILE=Path(config.STATUS_FILE),
             all_schema=schema_columns,
             number_of_columns=number_of_columns,
+            VALIDATION_REPORT=Path(config.VALIDATION_REPORT),
         )
         
         return data_validation_config

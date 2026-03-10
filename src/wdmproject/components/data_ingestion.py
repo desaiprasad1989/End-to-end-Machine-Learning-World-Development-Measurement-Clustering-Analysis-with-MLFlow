@@ -6,12 +6,17 @@ from wdmproject import logger
 from pathlib import Path
 from wdmproject.entity.config_entity import (DataIngestionConfig)
 import pandas as pd
+import json
+from datetime import datetime
 
 
 class DataIngestion:
     def __init__(self, config: DataIngestionConfig):
         self.config = config
+        self.ingestion_report = {}
+        
 
+    ## Download Data
     def download_file(self):
         if not os.path.exists(self.config.local_data_file):
             filename, headers = request.urlretrieve(
@@ -20,10 +25,24 @@ class DataIngestion:
             )
             logger.info(f"file downloaded successfully and saved at: {filename}\n{headers}")
             logger.info(f"file size: {get_size(Path(filename))}")
+
+            self.ingestion_report['dataset_download'] = {
+                 "status" : "Success",
+                 "file_name" : filename,
+                 "file_size" : get_size(Path(filename))
+            }
+
         else:
             logger.info(f"file already exists of size: {get_size(Path(self.config.local_data_file))}")
             logger.info(f"file already exists at: {self.config.local_data_file}")
 
+            self.ingestion_report['dataset_download'] = {
+                "status" : "Warning",
+                "mesaage" : "File already exists.",
+                "file_size" : get_size(self.config.local_data_file)
+            }
+
+    ## Extract Data
     def extract_zip_file(self):
         """
         zip_file_path: str 
@@ -34,20 +53,74 @@ class DataIngestion:
         os.makedirs(unzip_path, exist_ok=True)
         with zipfile.ZipFile(self.config.local_data_file, 'r') as zip_ref:
             zip_ref.extractall(unzip_path)
-        logger.info(f"File extracted successfully at: {self.config.unzip_dir}")
+        logger.info(f"file extracted successfully at: {self.config.unzip_dir}")
 
+        self.ingestion_report['dataset_extraction'] = {
+                 "status" : "Success",
+                 "message" : "File Extracted Successfully."
+        }
+
+
+
+    ## Save Ingestion Report
+    def save_ingestion_report(self):
+            report_path = self.config.INGESTION_REPORT
+
+            with open(report_path, "w") as f:
+
+                json.dump(self.ingestion_report, f, indent=4)
+
+            logger.info(f"Ingestion report saved at {report_path}")
+
+
+    ## Inititate Data Ingestion
 
     def initiate_data_ingestion(self):
-        logger.info("Entered the data ingestion method")
-        try:    
-            self.download_file()
-            self.extract_zip_file()
-            df=pd.read_excel("artifacts/data_ingestion/World_development_mesurement.xlsx")
-            logger.info(f"Read the dataset as dataframe with shape: {df.shape}")
-            logger.info("Data ingestion method completed successfully.")
+        try: 
+            
+            ## Intiating Data Ingestion stage
 
-            return df   
-        
+            self.ingestion_report["stage_metadata"] = {
+                "stage_name" : "Data Ingestion",
+                "stage_status" : "Running",
+                "start_time" : str(datetime.now())
+            }
+
+            logger.info("Initiating Data Ingestion Stage.")
+
+            ## Saving start_time
+            start_time = datetime.now()
+
+            ## Downloading Dataset
+            self.download_file()
+
+            ## Extracting Data
+            self.extract_zip_file()
+
+            ## Stage Success
+            self.ingestion_report["stage_metadata"]["stage_status"] = "Success"
+            self.ingestion_report["stage_metadata"]["end_time"] = str(datetime.now())
+
+            ## Calculating Stage Duration
+             
+            stage_duration = (datetime.now() - start_time).total_seconds()
+            self.ingestion_report["stage_metadata"]["stage_duration"] = stage_duration
+            
+            # Saving Ingestion Report JSON
+            self.save_ingestion_report()
+
+            logger.info("Data Ingestion Checks Completed Successfully.")
+
         except Exception as e:
-            logger.exception(e)
+            
+            logger.error(f"Data Ingestion Error : {e}")
+
+            end_time = datetime.now()
+
+            self.ingestion_report["stage_metadata"]["stage_status"] = "Failed"
+            self.ingestion_report["stage_metadata"]["end_time"] = str(end_time)
+            self.ingestion_report["stage_metadata"]["error"] = str(e)
+
+            self.save_ingestion_report()
+
             raise e

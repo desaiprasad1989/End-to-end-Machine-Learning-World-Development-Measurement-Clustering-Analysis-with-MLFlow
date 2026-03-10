@@ -13,7 +13,7 @@ class DataValidationPipeline:
         config = ConfigurationManager()
         data_validation_config = config.get_data_validation_config()
         data_validation = DataValidation(config=data_validation_config)
-        data_validation.validate_all_columns()
+        data_validation.initiate_data_validation()
         logger.info(f"Data Validation Pipeline Completed Successfully.")
 
 
