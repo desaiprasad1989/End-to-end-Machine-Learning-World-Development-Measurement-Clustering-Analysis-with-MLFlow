@@ -1,6 +1,7 @@
 import os
 from wdmproject import logger
 import pandas as pd
+import numpy as np
 import json
 from datetime import datetime
 from wdmproject.entity.config_entity import DataValidationConfig
@@ -280,6 +281,74 @@ class DataValidation:
             raise e
         
 
+     ## Validating Features distribution
+
+    def validate_feature_distribution(self):
+        try:
+            data = self.data
+
+            numeric_cols = data.select_dtypes(include=['float64', 'int64']).columns
+
+            features = {}
+            zero_variance_cols = []
+
+            for col in numeric_cols:
+
+                mean = data[col].mean()
+                std = data[col].std()
+                min = data[col].min()
+                max = data[col].max()
+                skewness = data[col].skew()
+                kurtosis = data[col].kurtosis()
+
+                ## Calculating Z-Score for outliers 
+                if std != 0:
+                    z_scores = np.abs( (data[col] - mean) / std )
+                    outliers = ( z_scores > 3 ).sum()
+                    outliers_percentage = ( outliers / len(data[col])) * 100
+                else: 
+                    outliers_percentage = 0
+                    zero_variance_cols.append(col)
+                    logger.warning(f"{col} has zero variance.")
+
+                #logger.info(f"{col} -> mean : {mean}, std : {std}")
+
+                features[col] = {
+                    "mean" : float(mean),
+                    "std" : float(std),
+                    "min" : float(min),
+                    "max" : float(max),
+                    "skewness" : float(skewness),
+                    "kurtosis" : float(kurtosis),
+                    "outlier_percentage" : round(float(outliers_percentage), 2)
+                }
+
+
+            if zero_variance_cols:
+                self.validation_report["feature_distribution"] = {
+                    "status" : "Warning",
+                    "message" : "Some features have zero variance",
+                    "zero_variance_features" : zero_variance_cols,
+                    "features" : features,
+                }
+            else:
+                self.validation_report["feature_distribution"] = {
+                    "status" : "Success",
+                    "message" : "Feature Distribution Validated",
+                    "features" : features,
+                }
+
+
+            logger.info("Feature Disctribution validation completed.")
+
+        except Exception as e:
+            logger.info("Feature Disctribution validation error: {e}")
+            self.validation_report["feature_distribution"] = {
+                "status": "Failed",
+                "error": str(e)
+            }
+            raise e
+
 
     # Saving Validation Report 
     def save_validation_report(self):
@@ -325,6 +394,10 @@ class DataValidation:
 
             ## Checking Constant Columns
             self.check_constant_columns()
+
+             ## Univariate Analysis / Validating Feature Distribution
+             ## Mean, std, min, max, skewness, kurtosis, outier percentage
+            self.validate_feature_distribution()
 
             ## Stage Success
             self.validation_report["stage_metadata"]["stage_status"] = "Success"

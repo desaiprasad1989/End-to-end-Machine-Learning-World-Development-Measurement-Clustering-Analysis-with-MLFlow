@@ -2,9 +2,9 @@
     "stage_metadata": {
         "stage_name": "Data Validation",
         "stage_status": "Success",
-        "start_time": "2026-03-10 17:24:19.428142",
-        "end_time": "2026-03-10 17:24:22.156122",
-        "stage_duration": 2.72798
+        "start_time": "2026-03-10 18:54:46.105972",
+        "end_time": "2026-03-10 18:54:49.034694",
+        "stage_duration": 2.928722
     },
     "dataset_load": {
         "status": "Success",
@@ -67,5 +67,185 @@
         "columns": [
             "Number of Records"
         ]
+    },
+    "feature_distribution": {
+        "status": "Warning",
+        "message": "Some features have zero variance",
+        "zero_variance_features": [
+            "Number of Records"
+        ],
+        "features": {
+            "Birth Rate": {
+                "mean": 0.022714893617021278,
+                "std": 0.011338427437835419,
+                "min": 0.007,
+                "max": 0.053,
+                "skewness": 0.6621510380354036,
+                "kurtosis": -0.683573092601768,
+                "outlier_percentage": 0.0
+            },
+            "CO2 Emissions": {
+                "mean": 142307.10776470587,
+                "std": 615928.8057093653,
+                "min": 7.0,
+                "max": 8286892.0,
+                "skewness": 8.654038731705004,
+                "kurtosis": 83.08072061737991,
+                "outlier_percentage": 0.85
+            },
+            "Days to Start Business": {
+                "mean": 39.99941792782305,
+                "std": 57.31858774023146,
+                "min": 1.0,
+                "max": 694.0,
+                "skewness": 7.437591899372352,
+                "kurtosis": 77.66193036605749,
+                "outlier_percentage": 0.52
+            },
+            "Ease of Business": {
+                "mean": 94.87567567567568,
+                "std": 54.79190576828231,
+                "min": 1.0,
+                "max": 189.0,
+                "skewness": 0.017744782341917523,
+                "kurtosis": -1.2005527565572862,
+                "outlier_percentage": 0.0
+            },
+            "Energy Usage": {
+                "mean": 77236.84089635854,
+                "std": 259923.8558447519,
+                "min": 8.0,
+                "max": 2727728.0,
+                "skewness": 7.062229552511793,
+                "kurtosis": 54.89056894965293,
+                "outlier_percentage": 0.92
+            },
+            "Health Exp % GDP": {
+                "mean": 0.06416951983298538,
+                "std": 0.02632460099930643,
+                "min": 0.008,
+                "max": 0.225,
+                "skewness": 1.1797571226709336,
+                "kurtosis": 2.9632324659393756,
+                "outlier_percentage": 1.37
+            },
+            "Hours to do Tax": {
+                "mean": 302.06850282485874,
+                "std": 273.29968582536736,
+                "min": 12.0,
+                "max": 2600.0,
+                "skewness": 4.491308245177779,
+                "kurtosis": 30.79232334645546,
+                "outlier_percentage": 0.41
+            },
+            "Infant Mortality Rate": {
+                "mean": 0.032813011456628474,
+                "std": 0.029967601186108368,
+                "min": 0.002,
+                "max": 0.141,
+                "skewness": 1.0491183898119616,
+                "kurtosis": 0.17224076104202402,
+                "outlier_percentage": 0.44
+            },
+            "Internet Usage": {
+                "mean": 0.23974713551955748,
+                "std": 0.26013179858500984,
+                "min": 0.0,
+                "max": 1.0,
+                "skewness": 0.9409664473188067,
+                "kurtosis": -0.2723868837460097,
+                "outlier_percentage": 0.0
+            },
+            "Lending Interest": {
+                "mean": 0.14810265957446808,
+                "std": 0.17182908446032255,
+                "min": 0.005,
+                "max": 4.965,
+                "skewness": 15.536119446749021,
+                "kurtosis": 374.12253857605845,
+                "outlier_percentage": 0.52
+            },
+            "Life Expectancy Female": {
+                "mean": 71.15926791277259,
+                "std": 10.708261838894023,
+                "min": 39.0,
+                "max": 87.0,
+                "skewness": -0.8915562819063326,
+                "kurtosis": -0.24726691588289285,
+                "outlier_percentage": 0.04
+            },
+            "Life Expectancy Male": {
+                "mean": 66.46183800623054,
+                "std": 9.390217375680313,
+                "min": 37.0,
+                "max": 88.0,
+                "skewness": -0.7054848933236255,
+                "kurtosis": -0.35580163637881634,
+                "outlier_percentage": 0.07
+            },
+            "Mobile Phone Usage": {
+                "mean": 0.5781237682301931,
+                "std": 0.4746474156866036,
+                "min": 0.0,
+                "max": 2.9,
+                "skewness": 0.5696054197192167,
+                "kurtosis": -0.3144087103397841,
+                "outlier_percentage": 0.22
+            },
+            "Number of Records": {
+                "mean": 1.0,
+                "std": 0.0,
+                "min": 1.0,
+                "max": 1.0,
+                "skewness": 0.0,
+                "kurtosis": 0.0,
+                "outlier_percentage": 0.0
+            },
+            "Population 0-14": {
+                "mean": 0.3030511272141707,
+                "std": 0.10657685140061092,
+                "min": 0.118,
+                "max": 0.5,
+                "skewness": 0.05965959320605741,
+                "kurtosis": -1.2962640520726252,
+                "outlier_percentage": 0.0
+            },
+            "Population 15-64": {
+                "mean": 0.6234814814814815,
+                "std": 0.0696602483531569,
+                "min": 0.474,
+                "max": 0.858,
+                "skewness": -0.18688062210003248,
+                "kurtosis": -0.5938395646721792,
+                "outlier_percentage": 0.37
+            },
+            "Population 65+": {
+                "mean": 0.07346457326892109,
+                "std": 0.04954132705089377,
+                "min": 0.003,
+                "max": 0.244,
+                "skewness": 0.9198414105956375,
+                "kurtosis": -0.39344428828330624,
+                "outlier_percentage": 0.15
+            },
+            "Population Total": {
+                "mean": 31457293.894600593,
+                "std": 124289389.91688949,
+                "min": 18876.0,
+                "max": 1350695000.0,
+                "skewness": 8.788164352982424,
+                "kurtosis": 82.3830276728538,
+                "outlier_percentage": 0.96
+            },
+            "Population Urban": {
+                "mean": 0.5629525765496639,
+                "std": 0.2458971687986025,
+                "min": 0.082,
+                "max": 1.0,
+                "skewness": 0.01251875044249089,
+                "kurtosis": -1.0812618168529884,
+                "outlier_percentage": 0.0
+            }
+        }
     }
 }

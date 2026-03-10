@@ -2,9 +2,9 @@
     "stage_metadata": {
         "stage_name": "Data Ingestion",
         "stage_status": "Success",
-        "start_time": "2026-03-10 17:24:16.732704",
-        "end_time": "2026-03-10 17:24:19.400011",
-        "stage_duration": 2.665287
+        "start_time": "2026-03-10 18:54:44.425570",
+        "end_time": "2026-03-10 18:54:46.080370",
+        "stage_duration": 1.6548
     },
     "dataset_download": {
         "status": "Success",
