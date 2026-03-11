@@ -39,6 +39,57 @@ class DataValidation:
             raise e
 
 
+    ## Some important features in dataset like 'Business Tax Rate', 'GDP', 'Health Exp/Capita', 'Tourism Inbound', 'Tourism Outbound', are
+    # considered to be object due to presence of currency symbol in the data except Country 
+    # So we will temporarily clean the data for further data validations performed on these features as they are very important for analysis.
+
+    def clean_currency_columns(self):
+        try :
+
+            data = self.data
+
+            currency_columns = [
+                'Business Tax Rate',
+                'GDP',
+                'Health Exp/Capita', 
+                'Tourism Inbound', 
+                'Tourism Outbound'
+            ]
+
+            for col in currency_columns:
+
+                if col in data.columns:
+
+                    data[col] = (
+                        data[col]
+                        .astype(str)
+                        .str.replace(r"[^\d.]", "", regex=True)
+                        .replace("", np.nan)
+                        .astype(float)
+                    )
+            
+            self.data = data
+
+            logger.info("Currency Symbols temporarily cleaned for valiation checks.")
+
+            self.validation_report["currency_cleaning"] = {
+                "status" : "Success",
+                "columns_cleaned" : currency_columns
+            }
+
+        except Exception as e:
+            
+            logger.error(f"Currency cleaning error : {e}")
+
+            self.validation_report["currency_cleaning"] = {
+                "status" : "Failed",
+                "error" : str(e)
+            }
+            
+            raise e
+        
+
+
     ## Checking wheather all the columns in dataset matches with schema
     def validate_all_columns(self) -> bool:
         try:
@@ -349,6 +400,59 @@ class DataValidation:
             }
             raise e
 
+    ## Validating Feature Correlation
+
+    def validate_feature_correlation(self):
+        try:
+            
+            data = self.data
+
+            numeric_cols = data.select_dtypes(include=['float64', 'int64'])
+
+            corr_matrix = numeric_cols.corr()
+
+            threshold = 0.9
+
+            high_corr = []
+
+            for i in range(len(corr_matrix.columns)):
+                for j in range(i):
+
+                    corr_value = corr_matrix.iloc[i, j]
+
+                    if abs(corr_value) > threshold:
+
+                        col1 = corr_matrix.columns[i]
+                        col2 = corr_matrix.columns[j]
+
+                        high_corr.append({
+                            "feature_1" : col1,
+                            "feature_2" : col2,
+                            "correlation" : round(float(corr_value), 4) 
+                        })
+
+            
+            if high_corr:
+                self.validation_report["feature_correlation"] = {
+                    "status" : "Warning",
+                    "high_correlated_features" : high_corr
+                }
+
+                logger.info(f"Highly Correlated features detected : {high_corr}")
+            else:
+                self.validation_report["feature_correlation"] = {
+                    "status" : "Success",
+                    "message" : "No highly correlated features detected."
+                }
+                logger.info("No highly correlated features detected.")
+
+            logger.info("Feature Correlation Validation Check Completed.")
+
+        except Exception as e:
+            logger.error(f"Correlation validation error: {e}")
+            raise e
+
+
 
     # Saving Validation Report 
     def save_validation_report(self):
@@ -383,6 +487,9 @@ class DataValidation:
             ## Loading Dataset
             self.load_data()
 
+            ## Temporary clean currency from columns for validation checks
+            self.clean_currency_columns()
+
             ## Validating all columns, datatypes, and dataframe
             self.validate_all_columns()
 
@@ -398,6 +505,9 @@ class DataValidation:
              ## Univariate Analysis / Validating Feature Distribution
              ## Mean, std, min, max, skewness, kurtosis, outier percentage
             self.validate_feature_distribution()
+
+            ## Validating Feature Correlation
+            self.validate_feature_correlation()
 
             ## Stage Success
             self.validation_report["stage_metadata"]["stage_status"] = "Success"

@@ -2,14 +2,24 @@
     "stage_metadata": {
         "stage_name": "Data Validation",
         "stage_status": "Success",
-        "start_time": "2026-03-10 18:54:46.105972",
-        "end_time": "2026-03-10 18:54:49.034694",
-        "stage_duration": 2.928722
+        "start_time": "2026-03-11 14:04:47.027903",
+        "end_time": "2026-03-11 14:04:49.721518",
+        "stage_duration": 2.692605
     },
     "dataset_load": {
         "status": "Success",
         "rows": 2704,
         "columns": 25
+    },
+    "currency_cleaning": {
+        "status": "Success",
+        "columns_cleaned": [
+            "Business Tax Rate",
+            "GDP",
+            "Health Exp/Capita",
+            "Tourism Inbound",
+            "Tourism Outbound"
+        ]
     },
     "columns_count": {
         "status": "Success",
@@ -26,8 +36,15 @@
         "data": []
     },
     "datatype_mismatch": {
-        "status": "Success",
-        "message": "No Datatype Mismatch Found in Schema"
+        "status": "Warning",
+        "message": "Datatype Mismatch in Schema Check Failed",
+        "data": [
+            "Business Tax Rate: expected object, got float64",
+            "GDP: expected object, got float64",
+            "Health Exp/Capita: expected object, got float64",
+            "Tourism Inbound: expected object, got float64",
+            "Tourism Outbound: expected object, got float64"
+        ]
     },
     "missing_values_check": {
         "status": "Warning",
@@ -84,6 +101,15 @@
                 "kurtosis": -0.683573092601768,
                 "outlier_percentage": 0.0
             },
+            "Business Tax Rate": {
+                "mean": 48.96690091356289,
+                "std": 40.95411647369982,
+                "min": 8.2,
+                "max": 339.1,
+                "skewness": 4.342567887753289,
+                "kurtosis": 21.82660156057662,
+                "outlier_percentage": 1.52
+            },
             "CO2 Emissions": {
                 "mean": 142307.10776470587,
                 "std": 615928.8057093653,
@@ -120,6 +146,15 @@
                 "kurtosis": 54.89056894965293,
                 "outlier_percentage": 0.92
             },
+            "GDP": {
+                "mean": 263854042324.26584,
+                "std": 1129910323899.1582,
+                "min": 63101272.0,
+                "max": 16244600000000.0,
+                "skewness": 9.424246663041874,
+                "kurtosis": 105.53278543163829,
+                "outlier_percentage": 1.15
+            },
             "Health Exp % GDP": {
                 "mean": 0.06416951983298538,
                 "std": 0.02632460099930643,
@@ -128,6 +163,15 @@
                 "skewness": 1.1797571226709336,
                 "kurtosis": 2.9632324659393756,
                 "outlier_percentage": 1.37
+            },
+            "Health Exp/Capita": {
+                "mean": 801.3970772442589,
+                "std": 1473.4480360803525,
+                "min": 2.0,
+                "max": 9908.0,
+                "skewness": 2.817482102813476,
+                "kurtosis": 8.399443424915667,
+                "outlier_percentage": 2.51
             },
             "Hours to do Tax": {
                 "mean": 302.06850282485874,
@@ -245,7 +289,65 @@
                 "skewness": 0.01251875044249089,
                 "kurtosis": -1.0812618168529884,
                 "outlier_percentage": 0.0
+            },
+            "Tourism Inbound": {
+                "mean": 4939320248.287671,
+                "std": 13850984281.072096,
+                "min": 700000.0,
+                "max": 200092000000.0,
+                "skewness": 7.114871156585484,
+                "kurtosis": 69.22623184527585,
+                "outlier_percentage": 1.55
+            },
+            "Tourism Outbound": {
+                "mean": 4729434796.238244,
+                "std": 13267738528.568388,
+                "min": 200000.0,
+                "max": 126573000000.0,
+                "skewness": 5.210304234697493,
+                "kurtosis": 31.85347301699732,
+                "outlier_percentage": 1.92
             }
         }
+    },
+    "feature_correlation": {
+        "status": "Warning",
+        "high_correlated_features": [
+            {
+                "feature_1": "Energy Usage",
+                "feature_2": "CO2 Emissions",
+                "correlation": 0.9887
+            },
+            {
+                "feature_1": "Life Expectancy Female",
+                "feature_2": "Infant Mortality Rate",
+                "correlation": -0.933
+            },
+            {
+                "feature_1": "Life Expectancy Male",
+                "feature_2": "Infant Mortality Rate",
+                "correlation": -0.9122
+            },
+            {
+                "feature_1": "Life Expectancy Male",
+                "feature_2": "Life Expectancy Female",
+                "correlation": 0.977
+            },
+            {
+                "feature_1": "Population 0-14",
+                "feature_2": "Birth Rate",
+                "correlation": 0.956
+            },
+            {
+                "feature_1": "Population 15-64",
+                "feature_2": "Birth Rate",
+                "correlation": -0.9128
+            },
+            {
+                "feature_1": "Population 15-64",
+                "feature_2": "Population 0-14",
+                "correlation": -0.9266
+            }
+        ]
     }
 }
