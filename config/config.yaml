@@ -8,6 +8,7 @@ data_ingestion:
     unzip_dir: artifacts/data_ingestion
     data_path: artifacts/data_ingestion/world_development_mesurement.xlsx
     cleaned_data_path: artifacts/data_ingestion/cleaned_wdm_data.xlsx
+    schema_path: schema.yaml
     INGESTION_REPORT : artifacts/data_ingestion/ingestion_report.json
 
     

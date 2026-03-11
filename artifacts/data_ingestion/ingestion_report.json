@@ -2,9 +2,9 @@
     "stage_metadata": {
         "stage_name": "Data Ingestion",
         "stage_status": "Success",
-        "start_time": "2026-03-11 18:19:29.180059",
-        "end_time": "2026-03-11 18:19:38.121940",
-        "stage_duration": 8.941881
+        "start_time": "2026-03-11 19:11:39.165223",
+        "end_time": "2026-03-11 19:11:47.961186",
+        "stage_duration": 8.794961
     },
     "dataset_download": {
         "status": "Success",
@@ -48,6 +48,40 @@
             "Population Urban": "population_urban",
             "Tourism Inbound": "tourism_inbound",
             "Tourism Outbound": "tourism_outbound"
+        }
+    },
+    "schema_generation": {
+        "status": "Success",
+        "message": "Schema file updated.",
+        "schema": {
+            "NUMBER_OF_COLUMNS": 25,
+            "COLUMNS": {
+                "birth_rate": "float",
+                "business_tax_rate": "object",
+                "co2_emissions": "float",
+                "country": "object",
+                "days_to_start_business": "float",
+                "ease_of_business": "float",
+                "energy_usage": "float",
+                "gdp": "object",
+                "health_exp_percent_gdp": "float",
+                "health_expcapita": "object",
+                "hours_to_do_tax": "float",
+                "infant_mortality_rate": "float",
+                "internet_usage": "float",
+                "lending_interest": "float",
+                "life_expectancy_female": "float",
+                "life_expectancy_male": "float",
+                "mobile_phone_usage": "float",
+                "number_of_records": "int",
+                "population_014": "float",
+                "population_1564": "float",
+                "population_65": "float",
+                "population_total": "int",
+                "population_urban": "float",
+                "tourism_inbound": "object",
+                "tourism_outbound": "object"
+            }
         }
     }
 }

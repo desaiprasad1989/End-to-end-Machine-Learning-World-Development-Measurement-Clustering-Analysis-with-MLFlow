@@ -2,9 +2,9 @@
     "stage_metadata": {
         "stage_name": "Data Validation",
         "stage_status": "Success",
-        "start_time": "2026-03-11 18:19:38.148930",
-        "end_time": "2026-03-11 18:19:41.348094",
-        "stage_duration": 3.198162
+        "start_time": "2026-03-11 19:11:48.005161",
+        "end_time": "2026-03-11 19:11:50.852530",
+        "stage_duration": 2.846369
     },
     "dataset_load": {
         "status": "Success",
@@ -27,24 +27,70 @@
         "actual": 25
     },
     "missing_columns": {
-        "status": "Success",
-        "message": "Missing Columns Check Passed"
+        "status": "Warning",
+        "message": "Missing Columns Check Failed",
+        "data": [
+            "ease_of_business",
+            "business_tax_rate",
+            "energy_usage",
+            "population_urban",
+            "country",
+            "number_of_records",
+            "population_1564",
+            "population_65",
+            "birth_rate",
+            "co2_emissions",
+            "infant_mortality_rate",
+            "internet_usage",
+            "population_014",
+            "hours_to_do_tax",
+            "life_expectancy_female",
+            "life_expectancy_male",
+            "population_total",
+            "health_expcapita",
+            "mobile_phone_usage",
+            "health_exp_percent_gdp",
+            "tourism_outbound",
+            "lending_interest",
+            "gdp",
+            "days_to_start_business",
+            "tourism_inbound"
+        ]
     },
     "extra_columns": {
-        "status": "Success",
-        "message": "No Extra Columns Found",
-        "data": []
+        "status": "Warning",
+        "message": "Extra Columns Found",
+        "data": [
+            "Number of Records",
+            "Ease of Business",
+            "Life Expectancy Female",
+            "Population 0-14",
+            "CO2 Emissions",
+            "Energy Usage",
+            "Birth Rate",
+            "Mobile Phone Usage",
+            "Lending Interest",
+            "GDP",
+            "Hours to do Tax",
+            "Tourism Outbound",
+            "Infant Mortality Rate",
+            "Health Exp % GDP",
+            "Health Exp/Capita",
+            "Tourism Inbound",
+            "Population 15-64",
+            "Life Expectancy Male",
+            "Population Total",
+            "Population Urban",
+            "Internet Usage",
+            "Business Tax Rate",
+            "Days to Start Business",
+            "Population 65+",
+            "Country"
+        ]
     },
     "datatype_mismatch": {
-        "status": "Warning",
-        "message": "Datatype Mismatch in Schema Check Failed",
-        "data": [
-            "Business Tax Rate: expected object, got float64",
-            "GDP: expected object, got float64",
-            "Health Exp/Capita: expected object, got float64",
-            "Tourism Inbound: expected object, got float64",
-            "Tourism Outbound: expected object, got float64"
-        ]
+        "status": "Success",
+        "message": "No Datatype Mismatch Found in Schema"
     },
     "missing_values_check": {
         "status": "Warning",

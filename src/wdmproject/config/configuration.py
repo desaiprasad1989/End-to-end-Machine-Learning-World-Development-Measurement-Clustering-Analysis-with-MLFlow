@@ -33,6 +33,7 @@ class ConfigurationManager:
             unzip_dir=config.unzip_dir,
             data_path=Path(config.data_path),
             cleaned_data_path=Path(config.cleaned_data_path),
+            schema_path=Path(config.schema_path),
             INGESTION_REPORT=Path(config.INGESTION_REPORT)
         )
         

@@ -1,28 +1,27 @@
 NUMBER_OF_COLUMNS: 25
-
 COLUMNS:
-  Birth Rate: float64
-  Business Tax Rate: object
-  CO2 Emissions: float64
-  Country: object
-  Days to Start Business: float64
-  Ease of Business: float64
-  Energy Usage: float64
-  GDP: object
-  Health Exp % GDP: float64
-  Health Exp/Capita: object
-  Hours to do Tax: float64
-  Infant Mortality Rate: float64
-  Internet Usage: float64
-  Lending Interest: float64
-  Life Expectancy Female: float64
-  Life Expectancy Male: float64
-  Mobile Phone Usage: float64
-  Number of Records: int64  
-  Population 0-14: float64
-  Population 15-64: float64
-  Population 65+: float64
-  Population Total: int64  
-  Population Urban: float64
-  Tourism Inbound: object 
-  Tourism Outbound: object
+  birth_rate: float
+  business_tax_rate: object
+  co2_emissions: float
+  country: object
+  days_to_start_business: float
+  ease_of_business: float
+  energy_usage: float
+  gdp: object
+  health_exp_percent_gdp: float
+  health_expcapita: object
+  hours_to_do_tax: float
+  infant_mortality_rate: float
+  internet_usage: float
+  lending_interest: float
+  life_expectancy_female: float
+  life_expectancy_male: float
+  mobile_phone_usage: float
+  number_of_records: int
+  population_014: float
+  population_1564: float
+  population_65: float
+  population_total: int
+  population_urban: float
+  tourism_inbound: object
+  tourism_outbound: object

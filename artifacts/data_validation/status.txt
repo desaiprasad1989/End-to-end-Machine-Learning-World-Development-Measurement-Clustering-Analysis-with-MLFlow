@@ -1,3 +1,3 @@
-Validation Failed Unfortunately. 
-No missing columns found!
-Datatype Mismatch: ['Business Tax Rate: expected object, got float64', 'GDP: expected object, got float64', 'Health Exp/Capita: expected object, got float64', 'Tourism Inbound: expected object, got float64', 'Tourism Outbound: expected object, got float64']
+Validation Passed Successfully. 
+Missing Columns : {'ease_of_business', 'business_tax_rate', 'energy_usage', 'population_urban', 'country', 'number_of_records', 'population_1564', 'population_65', 'birth_rate', 'co2_emissions', 'infant_mortality_rate', 'internet_usage', 'population_014', 'hours_to_do_tax', 'life_expectancy_female', 'life_expectancy_male', 'population_total', 'health_expcapita', 'mobile_phone_usage', 'health_exp_percent_gdp', 'tourism_outbound', 'lending_interest', 'gdp', 'days_to_start_business', 'tourism_inbound'}
+All the datatypes matched with the schema.

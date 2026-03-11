@@ -12,6 +12,7 @@ from pathlib import Path
 from wdmproject.entity.config_entity import (DataIngestionConfig)
 import pandas as pd
 import json
+import yaml
 from datetime import datetime
 
 
@@ -145,6 +146,59 @@ class DataIngestion:
             raise e
         
 
+    ## Genearate New Schema
+    def generate_schema(self):
+        try:
+            data = self.data
+
+            schema = {
+               "NUMBER_OF_COLUMNS": len(data.columns),
+               "COLUMNS": {}
+            }
+
+
+            for col, dtype in data.dtypes.items():
+
+                dtype_str = str(dtype)
+
+                if "int" in dtype_str:
+                    schema["COLUMNS"][col] = "int"
+
+                elif "float" in dtype_str:
+                    schema["COLUMNS"][col] = "float"
+
+                elif "bool" in dtype_str:
+                    schema["COLUMNS"][col] = "bool"
+                
+                elif "datetime" in dtype_str:
+                    schema["COLUMNS"][col] = "datetime"
+                else:
+                    schema["COLUMNS"][col] = "object"
+            
+            schema_path = self.config.schema_path
+
+            with open(schema_path, "w") as file:
+                yaml.dump(schema, file, sort_keys=False)
+
+            logger.info(f"Schema file updated at {schema_path}")
+            self.ingestion_report['schema_generation'] = {
+                "status" : "Success",
+                "message" : "Schema file updated.",
+                "schema" : schema
+            }
+
+
+        except Exception as e:
+            logger.error(f"Schema generation error : {e}")
+
+            self.ingestion_report['schema_generation'] = {
+                "status" : "Error",
+                "message" : "Schema generation error",
+                "error" : str(e)
+            }
+
+            raise e
+
 
     ## Save Ingestion Report
     def save_ingestion_report(self):
@@ -190,6 +244,8 @@ class DataIngestion:
             ## Save Cleaned Dataset
             self.save_cleaned_dataset()
 
+            ## Generate New Schema and save im schema.yaml
+            self.generate_schema()
 
             ## Stage Success
             self.ingestion_report["stage_metadata"]["stage_status"] = "Success"

@@ -15,9 +15,12 @@
 1. Data Ingestion
    - 1.1 Read data from the source.
    - 1.2 Extract the data
-   - 1.3 Split the data with Train Test Split if required (ddepends on Supervised / Unsupervised Data) 
+   - 1.3 Split the data with Train Test Split if required (depends on Supervised / Unsupervised Data) 
    - 1.4 Save the data in data ingestion folder as raw data, train data and test data.
-
+   - 1.5 Checking a Standard Column name for the dataset (Added common functions in utils to check the valid column names, removing any special characters, spaces from the column names and convert to standard format.)
+   - 1.6 Save the clean dataset for data validation
+   - 1.7 Generate the new schema after standard column name and update the schema.yaml file automatically for Data Validation
+   - 1.8 Save the column remane_mapping file with json format for debugging and tracking at later stages. 
 
 ### Stage 2: Data Validation
 2. Data Validation

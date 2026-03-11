@@ -9,6 +9,7 @@ class DataIngestionConfig:
     unzip_dir: Path
     data_path: Path
     cleaned_data_path: Path
+    schema_path: Path
     INGESTION_REPORT: Path
 
 
