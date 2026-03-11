@@ -2,9 +2,9 @@
     "stage_metadata": {
         "stage_name": "Data Ingestion",
         "stage_status": "Success",
-        "start_time": "2026-03-11 14:04:44.610649",
-        "end_time": "2026-03-11 14:04:47.007979",
-        "stage_duration": 2.396331
+        "start_time": "2026-03-11 18:19:29.180059",
+        "end_time": "2026-03-11 18:19:38.121940",
+        "stage_duration": 8.941881
     },
     "dataset_download": {
         "status": "Success",
@@ -14,5 +14,40 @@
     "dataset_extraction": {
         "status": "Success",
         "message": "File Extracted Successfully."
+    },
+    "dataset_load": {
+        "status": "Success",
+        "rows": 2704,
+        "columns": 25
+    },
+    "standardize_columns": {
+        "status": "Warning",
+        "columns": {
+            "Birth Rate": "birth_rate",
+            "Business Tax Rate": "business_tax_rate",
+            "CO2 Emissions": "co2_emissions",
+            "Country": "country",
+            "Days to Start Business": "days_to_start_business",
+            "Ease of Business": "ease_of_business",
+            "Energy Usage": "energy_usage",
+            "GDP": "gdp",
+            "Health Exp % GDP": "health_exp_percent_gdp",
+            "Health Exp/Capita": "health_expcapita",
+            "Hours to do Tax": "hours_to_do_tax",
+            "Infant Mortality Rate": "infant_mortality_rate",
+            "Internet Usage": "internet_usage",
+            "Lending Interest": "lending_interest",
+            "Life Expectancy Female": "life_expectancy_female",
+            "Life Expectancy Male": "life_expectancy_male",
+            "Mobile Phone Usage": "mobile_phone_usage",
+            "Number of Records": "number_of_records",
+            "Population 0-14": "population_014",
+            "Population 15-64": "population_1564",
+            "Population 65+": "population_65",
+            "Population Total": "population_total",
+            "Population Urban": "population_urban",
+            "Tourism Inbound": "tourism_inbound",
+            "Tourism Outbound": "tourism_outbound"
+        }
     }
 }

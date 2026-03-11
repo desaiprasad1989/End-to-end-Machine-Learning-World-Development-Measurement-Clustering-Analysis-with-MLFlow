@@ -2,9 +2,9 @@
     "stage_metadata": {
         "stage_name": "Data Validation",
         "stage_status": "Success",
-        "start_time": "2026-03-11 14:04:47.027903",
-        "end_time": "2026-03-11 14:04:49.721518",
-        "stage_duration": 2.692605
+        "start_time": "2026-03-11 18:19:38.148930",
+        "end_time": "2026-03-11 18:19:41.348094",
+        "stage_duration": 3.198162
     },
     "dataset_load": {
         "status": "Success",

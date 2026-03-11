@@ -31,6 +31,8 @@ class ConfigurationManager:
             source_URL=config.source_URL,
             local_data_file=config.local_data_file,
             unzip_dir=config.unzip_dir,
+            data_path=Path(config.data_path),
+            cleaned_data_path=Path(config.cleaned_data_path),
             INGESTION_REPORT=Path(config.INGESTION_REPORT)
         )
         

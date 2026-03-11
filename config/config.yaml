@@ -1,20 +1,27 @@
 artifacts_root : artifacts
 
-### Data Ingestion related config 
-# Getting Data related config
+### Data Ingestion Config 
 data_ingestion:
     root_dir: artifacts/data_ingestion
     source_url: https://github.com/desaiprasad1989/Branching-Tutorial/raw/refs/heads/main/World_development_mesurement.zip
     local_data_file: artifacts/data_ingestion/data.zip
     unzip_dir: artifacts/data_ingestion
+    data_path: artifacts/data_ingestion/world_development_mesurement.xlsx
+    cleaned_data_path: artifacts/data_ingestion/cleaned_wdm_data.xlsx
     INGESTION_REPORT : artifacts/data_ingestion/ingestion_report.json
 
     
 
-### Data Validation related config
+### Data Validation Config
 data_validation:
     root_dir: artifacts/data_validation
     unzip_data_dir: artifacts/data_ingestion/world_development_mesurement.xlsx
     STATUS_FILE: artifacts/data_validation/status.txt
     VALIDATION_REPORT: artifacts/data_validation/validation_report.json
 
+
+### Data Transformation Config
+data_transformation:
+    root_dir: artifacts/data_transformation
+    data_path: artifacts/data_ingestion/world_development_mesurement.xlsx
+    TRANSFORMATION_REPORT: artifacts/data_transformation/transformation_report.json

@@ -7,7 +7,7 @@ import joblib
 from box import ConfigBox
 from pathlib import Path
 from typing import Any
-
+import re
 
 
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -118,3 +118,32 @@ def get_size(path: Path) -> str:
     """
     size_in_kb = round(os.path.getsize(path)/1024)
     return f"~ {size_in_kb} KB"
+
+
+def standardize_column_name(col):
+     """Defining Valid Standard column names 
+        This function check wheather the column name is i standard naming format or not
+        Otherwise replaces to valid column name 
+        lowercase, snake_case, no special characters, no spaces
+        Column Renaming
+     """
+     col = col.lower()
+
+     col = col.replace("%", "percent")
+
+     col = re.sub(r"[^\w\s]", "", col)
+
+     col = col.replace(" ", "_")
+
+     col = re.sub(r"_+", "_", col)
+
+     return col.strip("_")
+
+
+def is_standard_column(col):
+    """This function checks if all the columns name are in standard naming format
+    """
+    pattern = r"^[a-z0-9_]+$"
+
+    return bool(re.match(pattern, col))
+

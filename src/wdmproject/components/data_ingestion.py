@@ -1,7 +1,12 @@
 import os
 import urllib.request as request
 import zipfile
-from wdmproject.utils.common import save_json, load_json, save_bin, load_bin, get_size
+
+import importlib
+import wdmproject.utils.common as common
+importlib.reload(common)
+
+from wdmproject.utils.common import save_json, get_size, standardize_column_name, is_standard_column
 from wdmproject import logger
 from pathlib import Path
 from wdmproject.entity.config_entity import (DataIngestionConfig)
@@ -62,6 +67,85 @@ class DataIngestion:
 
 
 
+     # Dataset Loading
+    def load_data(self):
+        try:
+            self.data = pd.read_excel(self.config.data_path)
+            #with open(self.config.STATUS_FILE, 'w') as f:
+                 #  f.write(f"Data Loaded Successfully. \n")
+            logger.info('Data Loaded Succesfully.')
+            logger.info(f"Dataset Columns : {self.data.columns}")
+
+            self.ingestion_report['dataset_load'] = {
+                 "status" : "Success",
+                 "rows" : self.data.shape[0],
+                 "columns" : self.data.shape[1]
+            }
+
+
+        except Exception as e:
+            logger.error(f"Error Loading Dataset. {e}")
+            self.ingestion_report['dataset_load'] = {
+                 "status" : "Failed",
+                 "error_msg" : "Error Loading Dataset.",
+                 "error" : str(e),
+            }
+            raise e
+
+
+    ## Renaming columns to standard naming format
+
+    def stadardize_dataset_columns(self):
+        try:
+            
+            data = self.data
+            rename_map = {}
+            non_standard_columns = []
+
+            for col in data.columns:
+                if not is_standard_column(col):
+                    clean_col = standardize_column_name(col)
+                    rename_map[col] = clean_col
+                    non_standard_columns.append(col)
+
+            if rename_map:
+                data.rename(columns=rename_map, inplace=True)
+                logger.info(f"Standardize Columns Names: {rename_map}")
+
+                self.ingestion_report['standardize_columns'] = {
+                    "status" : "Warning",
+                    "columns" : rename_map,
+                }
+            else:
+                logger.info("All columns names are already in standard format.")
+                self.ingestion_report['standardize_columns'] = {
+                    "status" : "Success",
+                    "message" : "All columns names are already in standard format.",
+                }
+
+            self.data = data
+
+            return rename_map
+
+        except Exception as e:
+            logger.error(f"Column standardization error: {e}")
+            raise e
+
+
+
+    ## Save Cleaned Dataset
+
+    def save_cleaned_dataset(self):
+        try: 
+            clean_data_path = self.config.cleaned_data_path
+            self.data.to_excel(clean_data_path, index=False)
+            logger.info(f"Cleaned dataset saved at : {clean_data_path}")
+        except Exception as e:
+            logger.error(f"Saving cleaned dataset failed: {e}")
+            raise e
+        
+
+
     ## Save Ingestion Report
     def save_ingestion_report(self):
             report_path = self.config.INGESTION_REPORT
@@ -96,6 +180,16 @@ class DataIngestion:
 
             ## Extracting Data
             self.extract_zip_file()
+
+             ## Load Data
+            self.load_data()
+
+            ## Renaming columns to standard format
+            self.stadardize_dataset_columns()
+
+            ## Save Cleaned Dataset
+            self.save_cleaned_dataset()
+
 
             ## Stage Success
             self.ingestion_report["stage_metadata"]["stage_status"] = "Success"

@@ -7,6 +7,8 @@ class DataIngestionConfig:
     source_URL: str
     local_data_file: Path
     unzip_dir: Path
+    data_path: Path
+    cleaned_data_path: Path
     INGESTION_REPORT: Path
 
 
