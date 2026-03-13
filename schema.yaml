@@ -1,27 +1,27 @@
 NUMBER_OF_COLUMNS: 25
 COLUMNS:
-  birth_rate: float
+  birth_rate: float64
   business_tax_rate: object
-  co2_emissions: float
+  co2_emissions: float64
   country: object
-  days_to_start_business: float
-  ease_of_business: float
-  energy_usage: float
+  days_to_start_business: float64
+  ease_of_business: float64
+  energy_usage: float64
   gdp: object
-  health_exp_percent_gdp: float
+  health_exp_percent_gdp: float64
   health_expcapita: object
-  hours_to_do_tax: float
-  infant_mortality_rate: float
-  internet_usage: float
-  lending_interest: float
-  life_expectancy_female: float
-  life_expectancy_male: float
-  mobile_phone_usage: float
-  number_of_records: int
-  population_014: float
-  population_1564: float
-  population_65: float
-  population_total: int
-  population_urban: float
+  hours_to_do_tax: float64
+  infant_mortality_rate: float64
+  internet_usage: float64
+  lending_interest: float64
+  life_expectancy_female: float64
+  life_expectancy_male: float64
+  mobile_phone_usage: float64
+  number_of_records: int64
+  population_014: float64
+  population_1564: float64
+  population_65: float64
+  population_total: int64
+  population_urban: float64
   tourism_inbound: object
   tourism_outbound: object

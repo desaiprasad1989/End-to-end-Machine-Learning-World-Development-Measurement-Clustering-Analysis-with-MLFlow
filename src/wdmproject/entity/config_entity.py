@@ -21,3 +21,12 @@ class DataValidationConfig:
     all_schema: dict
     number_of_columns: int
     VALIDATION_REPORT: Path
+
+
+@dataclass(frozen=True)
+class DataTransformationConfig:
+    root_dir: Path
+    data_path: Path
+    transformed_data_path: Path
+    preprocessor_obj_file_path: Path
+    TRANSFORMATION_REPORT: Path

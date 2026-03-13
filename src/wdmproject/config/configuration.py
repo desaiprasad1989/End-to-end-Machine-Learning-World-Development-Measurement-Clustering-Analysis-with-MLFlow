@@ -1,7 +1,8 @@
 from wdmproject.constants import *
 from wdmproject.utils.common import read_yaml, create_directories
 from wdmproject.entity.config_entity import(DataIngestionConfig,
-                                            DataValidationConfig)
+                                            DataValidationConfig,
+                                            DataTransformationConfig)
 
 
 class ConfigurationManager:
@@ -40,7 +41,7 @@ class ConfigurationManager:
         return data_ingestion_config
     
     #-------------------------------------------------------
-    # Data Ingestion related configuration
+    # Data Validation related configuration
     #-------------------------------------------------------
 
     def get_data_validation_config(self) -> DataValidationConfig:
@@ -60,3 +61,22 @@ class ConfigurationManager:
         )
         
         return data_validation_config
+    
+    #-------------------------------------------------------
+    # Data Transformation related configuration
+    #-------------------------------------------------------
+    
+    def get_data_transformation_config(self) -> DataTransformationConfig:
+        config = self.config.data_transformation
+
+        create_directories([config.root_dir])
+
+        data_transformation_config = DataTransformationConfig(
+            root_dir=Path(config.root_dir),
+            data_path=Path(config.data_path),
+            transformed_data_path=Path(config.transformed_data_path),
+            preprocessor_obj_file_path=Path(config.preprocessor_obj_file_path),
+            TRANSFORMATION_REPORT=Path(config.TRANSFORMATION_REPORT)
+        )
+
+        return data_transformation_config

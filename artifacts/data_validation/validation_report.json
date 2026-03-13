@@ -2,9 +2,9 @@
     "stage_metadata": {
         "stage_name": "Data Validation",
         "stage_status": "Success",
-        "start_time": "2026-03-11 19:11:48.005161",
-        "end_time": "2026-03-11 19:11:50.852530",
-        "stage_duration": 2.846369
+        "start_time": "2026-03-13 19:41:58.636681",
+        "end_time": "2026-03-13 19:42:00.409307",
+        "stage_duration": 1.771624
     },
     "dataset_load": {
         "status": "Success",
@@ -27,66 +27,13 @@
         "actual": 25
     },
     "missing_columns": {
-        "status": "Warning",
-        "message": "Missing Columns Check Failed",
-        "data": [
-            "ease_of_business",
-            "business_tax_rate",
-            "energy_usage",
-            "population_urban",
-            "country",
-            "number_of_records",
-            "population_1564",
-            "population_65",
-            "birth_rate",
-            "co2_emissions",
-            "infant_mortality_rate",
-            "internet_usage",
-            "population_014",
-            "hours_to_do_tax",
-            "life_expectancy_female",
-            "life_expectancy_male",
-            "population_total",
-            "health_expcapita",
-            "mobile_phone_usage",
-            "health_exp_percent_gdp",
-            "tourism_outbound",
-            "lending_interest",
-            "gdp",
-            "days_to_start_business",
-            "tourism_inbound"
-        ]
+        "status": "Success",
+        "message": "Missing Columns Check Passed"
     },
     "extra_columns": {
-        "status": "Warning",
-        "message": "Extra Columns Found",
-        "data": [
-            "Number of Records",
-            "Ease of Business",
-            "Life Expectancy Female",
-            "Population 0-14",
-            "CO2 Emissions",
-            "Energy Usage",
-            "Birth Rate",
-            "Mobile Phone Usage",
-            "Lending Interest",
-            "GDP",
-            "Hours to do Tax",
-            "Tourism Outbound",
-            "Infant Mortality Rate",
-            "Health Exp % GDP",
-            "Health Exp/Capita",
-            "Tourism Inbound",
-            "Population 15-64",
-            "Life Expectancy Male",
-            "Population Total",
-            "Population Urban",
-            "Internet Usage",
-            "Business Tax Rate",
-            "Days to Start Business",
-            "Population 65+",
-            "Country"
-        ]
+        "status": "Success",
+        "message": "No Extra Columns Found",
+        "data": []
     },
     "datatype_mismatch": {
         "status": "Success",
@@ -96,28 +43,28 @@
         "status": "Warning",
         "message": "Missing Values Found.",
         "columns": {
-            "Birth Rate": 119,
-            "Business Tax Rate": 1281,
-            "CO2 Emissions": 579,
-            "Days to Start Business": 986,
-            "Ease of Business": 2519,
-            "Energy Usage": 919,
-            "GDP": 210,
-            "Health Exp % GDP": 309,
-            "Health Exp/Capita": 309,
-            "Hours to do Tax": 1288,
-            "Infant Mortality Rate": 260,
-            "Internet Usage": 173,
-            "Lending Interest": 824,
-            "Life Expectancy Female": 136,
-            "Life Expectancy Male": 136,
-            "Mobile Phone Usage": 167,
-            "Population 0-14": 220,
-            "Population 15-64": 220,
-            "Population 65+": 220,
-            "Population Urban": 26,
-            "Tourism Inbound": 368,
-            "Tourism Outbound": 471
+            "birth_rate": 119,
+            "business_tax_rate": 1281,
+            "co2_emissions": 579,
+            "days_to_start_business": 986,
+            "ease_of_business": 2519,
+            "energy_usage": 919,
+            "gdp": 210,
+            "health_exp_percent_gdp": 309,
+            "health_expcapita": 309,
+            "hours_to_do_tax": 1288,
+            "infant_mortality_rate": 260,
+            "internet_usage": 173,
+            "lending_interest": 824,
+            "life_expectancy_female": 136,
+            "life_expectancy_male": 136,
+            "mobile_phone_usage": 167,
+            "population_014": 220,
+            "population_1564": 220,
+            "population_65": 220,
+            "population_urban": 26,
+            "tourism_inbound": 368,
+            "tourism_outbound": 471
         }
     },
     "duplicates_check": {
@@ -128,17 +75,17 @@
         "status": "Warning",
         "message": "Constant Columns Found.",
         "columns": [
-            "Number of Records"
+            "number_of_records"
         ]
     },
     "feature_distribution": {
         "status": "Warning",
         "message": "Some features have zero variance",
         "zero_variance_features": [
-            "Number of Records"
+            "number_of_records"
         ],
         "features": {
-            "Birth Rate": {
+            "birth_rate": {
                 "mean": 0.022714893617021278,
                 "std": 0.011338427437835419,
                 "min": 0.007,
@@ -147,16 +94,7 @@
                 "kurtosis": -0.683573092601768,
                 "outlier_percentage": 0.0
             },
-            "Business Tax Rate": {
-                "mean": 48.96690091356289,
-                "std": 40.95411647369982,
-                "min": 8.2,
-                "max": 339.1,
-                "skewness": 4.342567887753289,
-                "kurtosis": 21.82660156057662,
-                "outlier_percentage": 1.52
-            },
-            "CO2 Emissions": {
+            "co2_emissions": {
                 "mean": 142307.10776470587,
                 "std": 615928.8057093653,
                 "min": 7.0,
@@ -165,7 +103,7 @@
                 "kurtosis": 83.08072061737991,
                 "outlier_percentage": 0.85
             },
-            "Days to Start Business": {
+            "days_to_start_business": {
                 "mean": 39.99941792782305,
                 "std": 57.31858774023146,
                 "min": 1.0,
@@ -174,7 +112,7 @@
                 "kurtosis": 77.66193036605749,
                 "outlier_percentage": 0.52
             },
-            "Ease of Business": {
+            "ease_of_business": {
                 "mean": 94.87567567567568,
                 "std": 54.79190576828231,
                 "min": 1.0,
@@ -183,7 +121,7 @@
                 "kurtosis": -1.2005527565572862,
                 "outlier_percentage": 0.0
             },
-            "Energy Usage": {
+            "energy_usage": {
                 "mean": 77236.84089635854,
                 "std": 259923.8558447519,
                 "min": 8.0,
@@ -192,16 +130,7 @@
                 "kurtosis": 54.89056894965293,
                 "outlier_percentage": 0.92
             },
-            "GDP": {
-                "mean": 263854042324.26584,
-                "std": 1129910323899.1582,
-                "min": 63101272.0,
-                "max": 16244600000000.0,
-                "skewness": 9.424246663041874,
-                "kurtosis": 105.53278543163829,
-                "outlier_percentage": 1.15
-            },
-            "Health Exp % GDP": {
+            "health_exp_percent_gdp": {
                 "mean": 0.06416951983298538,
                 "std": 0.02632460099930643,
                 "min": 0.008,
@@ -210,16 +139,7 @@
                 "kurtosis": 2.9632324659393756,
                 "outlier_percentage": 1.37
             },
-            "Health Exp/Capita": {
-                "mean": 801.3970772442589,
-                "std": 1473.4480360803525,
-                "min": 2.0,
-                "max": 9908.0,
-                "skewness": 2.817482102813476,
-                "kurtosis": 8.399443424915667,
-                "outlier_percentage": 2.51
-            },
-            "Hours to do Tax": {
+            "hours_to_do_tax": {
                 "mean": 302.06850282485874,
                 "std": 273.29968582536736,
                 "min": 12.0,
@@ -228,7 +148,7 @@
                 "kurtosis": 30.79232334645546,
                 "outlier_percentage": 0.41
             },
-            "Infant Mortality Rate": {
+            "infant_mortality_rate": {
                 "mean": 0.032813011456628474,
                 "std": 0.029967601186108368,
                 "min": 0.002,
@@ -237,7 +157,7 @@
                 "kurtosis": 0.17224076104202402,
                 "outlier_percentage": 0.44
             },
-            "Internet Usage": {
+            "internet_usage": {
                 "mean": 0.23974713551955748,
                 "std": 0.26013179858500984,
                 "min": 0.0,
@@ -246,7 +166,7 @@
                 "kurtosis": -0.2723868837460097,
                 "outlier_percentage": 0.0
             },
-            "Lending Interest": {
+            "lending_interest": {
                 "mean": 0.14810265957446808,
                 "std": 0.17182908446032255,
                 "min": 0.005,
@@ -255,7 +175,7 @@
                 "kurtosis": 374.12253857605845,
                 "outlier_percentage": 0.52
             },
-            "Life Expectancy Female": {
+            "life_expectancy_female": {
                 "mean": 71.15926791277259,
                 "std": 10.708261838894023,
                 "min": 39.0,
@@ -264,7 +184,7 @@
                 "kurtosis": -0.24726691588289285,
                 "outlier_percentage": 0.04
             },
-            "Life Expectancy Male": {
+            "life_expectancy_male": {
                 "mean": 66.46183800623054,
                 "std": 9.390217375680313,
                 "min": 37.0,
@@ -273,7 +193,7 @@
                 "kurtosis": -0.35580163637881634,
                 "outlier_percentage": 0.07
             },
-            "Mobile Phone Usage": {
+            "mobile_phone_usage": {
                 "mean": 0.5781237682301931,
                 "std": 0.4746474156866036,
                 "min": 0.0,
@@ -282,7 +202,7 @@
                 "kurtosis": -0.3144087103397841,
                 "outlier_percentage": 0.22
             },
-            "Number of Records": {
+            "number_of_records": {
                 "mean": 1.0,
                 "std": 0.0,
                 "min": 1.0,
@@ -291,7 +211,7 @@
                 "kurtosis": 0.0,
                 "outlier_percentage": 0.0
             },
-            "Population 0-14": {
+            "population_014": {
                 "mean": 0.3030511272141707,
                 "std": 0.10657685140061092,
                 "min": 0.118,
@@ -300,7 +220,7 @@
                 "kurtosis": -1.2962640520726252,
                 "outlier_percentage": 0.0
             },
-            "Population 15-64": {
+            "population_1564": {
                 "mean": 0.6234814814814815,
                 "std": 0.0696602483531569,
                 "min": 0.474,
@@ -309,7 +229,7 @@
                 "kurtosis": -0.5938395646721792,
                 "outlier_percentage": 0.37
             },
-            "Population 65+": {
+            "population_65": {
                 "mean": 0.07346457326892109,
                 "std": 0.04954132705089377,
                 "min": 0.003,
@@ -318,7 +238,7 @@
                 "kurtosis": -0.39344428828330624,
                 "outlier_percentage": 0.15
             },
-            "Population Total": {
+            "population_total": {
                 "mean": 31457293.894600593,
                 "std": 124289389.91688949,
                 "min": 18876.0,
@@ -327,7 +247,7 @@
                 "kurtosis": 82.3830276728538,
                 "outlier_percentage": 0.96
             },
-            "Population Urban": {
+            "population_urban": {
                 "mean": 0.5629525765496639,
                 "std": 0.2458971687986025,
                 "min": 0.082,
@@ -335,24 +255,6 @@
                 "skewness": 0.01251875044249089,
                 "kurtosis": -1.0812618168529884,
                 "outlier_percentage": 0.0
-            },
-            "Tourism Inbound": {
-                "mean": 4939320248.287671,
-                "std": 13850984281.072096,
-                "min": 700000.0,
-                "max": 200092000000.0,
-                "skewness": 7.114871156585484,
-                "kurtosis": 69.22623184527585,
-                "outlier_percentage": 1.55
-            },
-            "Tourism Outbound": {
-                "mean": 4729434796.238244,
-                "std": 13267738528.568388,
-                "min": 200000.0,
-                "max": 126573000000.0,
-                "skewness": 5.210304234697493,
-                "kurtosis": 31.85347301699732,
-                "outlier_percentage": 1.92
             }
         }
     },
@@ -360,38 +262,38 @@
         "status": "Warning",
         "high_correlated_features": [
             {
-                "feature_1": "Energy Usage",
-                "feature_2": "CO2 Emissions",
+                "feature_1": "energy_usage",
+                "feature_2": "co2_emissions",
                 "correlation": 0.9887
             },
             {
-                "feature_1": "Life Expectancy Female",
-                "feature_2": "Infant Mortality Rate",
+                "feature_1": "life_expectancy_female",
+                "feature_2": "infant_mortality_rate",
                 "correlation": -0.933
             },
             {
-                "feature_1": "Life Expectancy Male",
-                "feature_2": "Infant Mortality Rate",
+                "feature_1": "life_expectancy_male",
+                "feature_2": "infant_mortality_rate",
                 "correlation": -0.9122
             },
             {
-                "feature_1": "Life Expectancy Male",
-                "feature_2": "Life Expectancy Female",
+                "feature_1": "life_expectancy_male",
+                "feature_2": "life_expectancy_female",
                 "correlation": 0.977
             },
             {
-                "feature_1": "Population 0-14",
-                "feature_2": "Birth Rate",
+                "feature_1": "population_014",
+                "feature_2": "birth_rate",
                 "correlation": 0.956
             },
             {
-                "feature_1": "Population 15-64",
-                "feature_2": "Birth Rate",
+                "feature_1": "population_1564",
+                "feature_2": "birth_rate",
                 "correlation": -0.9128
             },
             {
-                "feature_1": "Population 15-64",
-                "feature_2": "Population 0-14",
+                "feature_1": "population_1564",
+                "feature_2": "population_014",
                 "correlation": -0.9266
             }
         ]

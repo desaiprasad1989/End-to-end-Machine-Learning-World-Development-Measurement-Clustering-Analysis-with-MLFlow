@@ -21,7 +21,9 @@
    - 1.6 Save the clean dataset for data validation
    - 1.7 Generate the new schema after standard column name and update the schema.yaml file automatically for Data Validation
    - 1.8 Save the column remane_mapping file with json format for debugging and tracking at later stages. 
+   - 1.9 Generate Ingestion Report (JSON Format)
 
+   
 ### Stage 2: Data Validation
 2. Data Validation
    - 2.1 Load the Dataset
@@ -35,3 +37,16 @@
      - 2.2.7  Feature Distribution Check / Unvariate Analysis (mean, std, min, max, skewness, kurtosis, outlier percentage)
      - 2.2.8  Features Correlations Check
    - 2.3 Generate Validation Report (JSON Format)
+
+### Stage 3: Data Transformation
+3. Data Transformation
+   - 3.1 Load Dataset
+   - 3.2 Separate the country column for further analysis and drop it
+   - 3.3 Data Cleanig. Coverted Object datatype columns to numeric
+   - 3.4 Created preprocessor using ColumnTransformer, numeric pipeline with KNNImputer, PowerTransformer and RobustScaler
+   - 3.5 Created Full pipeline with preprocessor and PCA
+   - 3.6 Transformed data using fit_transform with complete pipeline.
+   - 3.7 Analyzed before and after data transformation results
+   - 3.8 Saved transformed data in artifacts/data_transformation
+   - 3.9 Saved preprocessor object (preprocessor.pkl) in artifacts/data_transformation
+   - 3.10 Generated Transformation Report (JSON Format)

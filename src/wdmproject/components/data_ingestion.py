@@ -162,10 +162,10 @@ class DataIngestion:
                 dtype_str = str(dtype)
 
                 if "int" in dtype_str:
-                    schema["COLUMNS"][col] = "int"
+                    schema["COLUMNS"][col] = "int64"
 
                 elif "float" in dtype_str:
-                    schema["COLUMNS"][col] = "float"
+                    schema["COLUMNS"][col] = "float64"
 
                 elif "bool" in dtype_str:
                     schema["COLUMNS"][col] = "bool"

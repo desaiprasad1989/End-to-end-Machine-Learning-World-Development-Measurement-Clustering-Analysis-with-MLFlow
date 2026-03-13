@@ -1,0 +1,105 @@
+{
+    "stage_metadata": {
+        "stage_name": "Data Transformation",
+        "stage_status": "Success",
+        "start_time": "2026-03-13 19:42:00.436290",
+        "end_time": "2026-03-13 19:42:07.454113",
+        "stage_duration": 7.016823
+    },
+    "dataset_load": {
+        "status": "Success",
+        "rows": 2704,
+        "columns": 25
+    },
+    "preprocessing": {
+        "status": "Success",
+        "total_numeric_features": 23,
+        "numeric_features": [
+            "birth_rate",
+            "business_tax_rate",
+            "co2_emissions",
+            "days_to_start_business",
+            "ease_of_business",
+            "energy_usage",
+            "gdp",
+            "health_exp_percent_gdp",
+            "health_expcapita",
+            "hours_to_do_tax",
+            "infant_mortality_rate",
+            "internet_usage",
+            "lending_interest",
+            "life_expectancy_female",
+            "life_expectancy_male",
+            "mobile_phone_usage",
+            "population_014",
+            "population_1564",
+            "population_65",
+            "population_total",
+            "population_urban",
+            "tourism_inbound",
+            "tourism_outbound"
+        ],
+        "pipeline_steps": [
+            "KNNImputer",
+            "PowerTransformer (Yeo-Johnson)",
+            "RobustScaler"
+        ],
+        "imputation": {
+            "method": "KNNImputer",
+            "neighbors": 5,
+            "missing_before": 11740,
+            "missing_after": 0
+        },
+        "power_transformation": {
+            "method": "Yeo-Johnson",
+            "skewness_before_sample": {
+                "birth_rate": 0.6621510380354036,
+                "business_tax_rate": 4.342567887753289,
+                "co2_emissions": 8.654038731705004,
+                "days_to_start_business": 7.437591899372352,
+                "ease_of_business": 0.017744782341917523
+            },
+            "skewness_after_sample": {
+                "0": 0.17299761420809814,
+                "1": -0.10434952295157772,
+                "2": 0.13943811135518713,
+                "3": 0.08778379144525504,
+                "4": -0.20457688903812402
+            }
+        },
+        "scaling": {
+            "method": "RobustScaler",
+            "sample_feature_stats_after_scaling": {
+                "mean": {
+                    "0": 6.260401467445293e-17,
+                    "1": 9.344924571179203e-17,
+                    "2": 7.062069535337535e-17,
+                    "3": 2.408596826260105e-16,
+                    "4": -3.2395191066170434e-17
+                },
+                "std": {
+                    "0": 2.105692251925337,
+                    "1": 1.6538127767994244,
+                    "2": 1.367460747630531,
+                    "3": 1.0225117716584584,
+                    "4": 0.8561155522622083
+                }
+            }
+        }
+    },
+    "pca": {
+        "status": "Success",
+        "components_generated": 8,
+        "variance_ratio": [
+            0.3306501980305869,
+            0.20396313308542788,
+            0.13944685593849868,
+            0.07796786139103164,
+            0.05465674470397647,
+            0.036672046426148124,
+            0.032455964323481745,
+            0.02506966273227673
+        ],
+        "random_state": 42
+    }
+}
