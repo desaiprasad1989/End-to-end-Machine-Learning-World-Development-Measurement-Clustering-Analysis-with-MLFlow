@@ -56,5 +56,6 @@
    - 4.1 Load Transformed dataset pickle format
    - 4.2 Train the data with different clustering models [KMeans, Agglomerative Clustering, DBSCAN, Mean Shift, GMM Gaussian Mixture Model]
    - 4.3 Evaluate Models with the standard Metrics
-   - 4.4 Generated Model Trainer Report (JSON Format)
+   - 4.4 Hyperparameter tuning parameters added with params.yaml file, to get best labels and best model
+   - 4.5 Generated Model Trainer Report (JSON Format)
 
