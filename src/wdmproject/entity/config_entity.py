@@ -29,4 +29,13 @@ class DataTransformationConfig:
     data_path: Path
     transformed_data_path: Path
     preprocessor_obj_file_path: Path
+    transformed_data_obj_file_path: Path
     TRANSFORMATION_REPORT: Path
+
+
+@dataclass(frozen=True)
+class ModelTrainerConfig:
+    root_dir: Path
+    transformed_data_path: Path 
+    model_params: dict
+    TRAINING_REPORT: Path

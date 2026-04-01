@@ -1,0 +1,39 @@
+{
+    "stage_metadata": {
+        "stage_name": "Model Trainer",
+        "stage_status": "Success",
+        "start_time": "2026-04-01 16:50:01.177128",
+        "end_time": "2026-04-01 16:50:45.449072",
+        "stage_duration": 44.271944
+    },
+    "dataset_load": {
+        "status": "Success",
+        "rows": 2704,
+        "columns": 13,
+        "nan_values": 0,
+        "inf_values": 0
+    },
+    "k_means": {
+        "silhouete_score": 0.21903471932947202,
+        "n_clusters": 4
+    },
+    "hierarchical": {
+        "silhouete_score": 0.18029236397045492,
+        "n_clusters": 4
+    },
+    "dbscan": {
+        "silhouete_score": -0.3911117996879886,
+        "n_clusters": 38
+    },
+    "meanshift": {
+        "silhouete_score": 0.44652940897614746,
+        "n_clusters": 3
+    },
+    "gmm": {
+        "silhouete_score": 0.04383200821327022,
+        "n_clusters": 4
+    },
+    "best_model": "meanshift",
+    "best_score": 0.44652940897614746,
+    "clusters": 3
+}

@@ -8,6 +8,7 @@ from box import ConfigBox
 from pathlib import Path
 from typing import Any
 import re
+from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_harabasz_score
 
 
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -146,4 +147,5 @@ def is_standard_column(col):
     pattern = r"^[a-z0-9_]+$"
 
     return bool(re.match(pattern, col))
+
 

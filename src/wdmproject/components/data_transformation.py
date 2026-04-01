@@ -6,9 +6,9 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 from sklearn.compose import ColumnTransformer
-from sklearn.impute import KNNImputer
+from sklearn.impute import KNNImputer, SimpleImputer
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import RobustScaler, PowerTransformer
+from sklearn.preprocessing import StandardScaler, FunctionTransformer
 from sklearn.decomposition import PCA
 import pickle, joblib
 
@@ -63,7 +63,11 @@ class DataTransformation:
 
     def convert_object_to_numeric(self):
         try:
-            data = self.data
+            data = self.data.copy()
+
+            logger.info("Cleaning and validating the data before preprocessing.")
+
+            data.replace([" ","NA","N/A","null","None",""], np.nan, inplace=True)
 
             for col in data.columns:
                 if data[col].dtype == "object":
@@ -78,13 +82,34 @@ class DataTransformation:
 
             #dt = data.info()
             logger.info(f"Object columns converted to numeric.")
+            
+            inf_count = np.isinf(data.values).sum()
+            if inf_count > 0:
+                logger.warning(f"Replacing {inf_count} infinite values with NaN")
+                data.replace([np.inf, -np.inf], np.nan, inplace=True)
+
+            empty_cols = data.columns[data.isna().all()].tolist()
+            if empty_cols:
+                logger.warning(f"Dropping fully empty columns: {empty_cols}")
+                data.drop(columns=empty_cols, inplace=True)
+
+            total_missing = data.isna().sum().sum()
+            logger.info(f"Total missing values after cleaning: {total_missing}") 
+
+            logger.info(f"Data types after conversion:\n{data.dtypes}")
+            
+            self.data = data
+
+            logger.info(f"Dataset Shape after cleaning: {data.shape}")
+
+            return data   
+
     
         except Exception as e:
             logger.info(f"Object columns conversion to numeric failed : {e}")
             raise e
 
-
-    ## Creating numeric Pipeline preprocessor with Imputer, power transformer and Roburst scaler 
+    ## Creating numeric Pipeline preprocessor with Imputer, log transformer and Standard scaler 
 
     def create_preprocessor(self):
         try:
@@ -95,23 +120,35 @@ class DataTransformation:
             
             logger.info(f"Total numeric features for transformation: {len(numeric_cols)}")
             logger.info(f"Numeric features: {numeric_cols}")
-            
-            numeric_pipeline = Pipeline([
-                ("imputer", KNNImputer(n_neighbors=5)),
-                ("power_transform", PowerTransformer(method="yeo-johnson")),
-                ("scaler", RobustScaler())
+
+            skewed_cols = data[numeric_cols].skew()
+            log_cols = skewed_cols[skewed_cols > 1].index.tolist()
+            non_log_cols = [col for col in numeric_cols if col not in log_cols]
+
+            ## for skewed columns appying log
+            log_pipeline = Pipeline([
+                ("imputer", SimpleImputer(strategy="median")),
+                ("log_transform", FunctionTransformer(np.log1p)),
+                ("scaler", StandardScaler())
             ])
 
+            ## For normal columns (no log)
+            numeric_pipeline = Pipeline([
+                ("imputer", SimpleImputer(strategy="median")),
+                ("scaler", StandardScaler())                    
+            ])
+            
             logger.info("Numeric pipeline created with steps:")
-            logger.info("1. KNNImputer (n_neighbors=5)")
-            logger.info("2. PowerTransformer (method='yeo-johnson')")
-            logger.info("3. RobustScaler")
+            logger.info("1. SimpleImputer (strategy='median')")
+            logger.info("2. LogTransformer (log1p)")
+            logger.info("3. StandardScaler")
 
             logger.info(f"Type of numeric_pipeline: {type(numeric_pipeline)}")
             
             preprocessor = ColumnTransformer(
                 transformers=[
-                    ("num_pipeline", numeric_pipeline, numeric_cols)
+                    ("log_pipeline", log_pipeline, log_cols),
+                    ("num_pipeline", numeric_pipeline, non_log_cols)
                 ]
             )
 
@@ -122,9 +159,9 @@ class DataTransformation:
                 "total_numeric_features": len(numeric_cols),
                 "numeric_features": numeric_cols,
                 "pipeline_steps": [
-                    "KNNImputer",
-                    "PowerTransformer (Yeo-Johnson)",
-                    "RobustScaler"
+                    "SimpleImputer",
+                    "LogTransformer (Yeo-Johnson)",
+                    "StandardScaler"
                 ]
             }
 
@@ -148,7 +185,7 @@ class DataTransformation:
 
             logger.info("Applying PCA with 90% variance retention")
 
-            pca = PCA(n_components=0.90, random_state=42)
+            pca = PCA(n_components=0.95, random_state=42)
 
             pipeline = Pipeline([
                 ("preprocessor", preprocessor),
@@ -190,20 +227,20 @@ class DataTransformation:
 
             logger.info("Transformation completed successfully")
            
-            ## Check KNN Imputation
+            ## Check Simple Imputation
             missing_before = data.isnull().sum().sum()
             logger.info(f"Total missing values before imputation: {missing_before}")
             missing_after = np.isnan(transformed_data).sum()
             logger.info(f"Total missing values after transformation: {missing_after}")
 
             self.transformation_report["preprocessing"]["imputation"] = {
-                "method": "KNNImputer",
-                "neighbors": 5,
+                "method": "SimpleImputer",
+                "strategy": 'median',
                 "missing_before": int(missing_before),
                 "missing_after": int(missing_after)
             }
 
-            ## Checking Power Transformations
+            ## Checking Log Transformations
 
             skew_before = self.data.skew().to_dict()
             df_transformed = pd.DataFrame(transformed_data)
@@ -212,8 +249,8 @@ class DataTransformation:
             logger.info("Skewness before transformation calculated")
             logger.info("Skewness after transformation calculated")
 
-            self.transformation_report["preprocessing"]["power_transformation"] = {
-                "method": "Yeo-Johnson",
+            self.transformation_report["preprocessing"]["log_transformation"] = {
+                "method": "log1p",
                 "skewness_before_sample": dict(list(skew_before.items())[:5]),
                 "skewness_after_sample": dict(list(skew_after.items())[:5])
             }
@@ -222,7 +259,7 @@ class DataTransformation:
             logger.info("Feature scaling completed using RobustScaler")
 
             self.transformation_report["preprocessing"]["scaling"] = {
-                "method": "RobustScaler",
+                "method": "StandardScaler",
                 "sample_feature_stats_after_scaling": {
                     "mean": df_transformed.mean().head().to_dict(),
                     "std": df_transformed.std().head().to_dict()
@@ -260,6 +297,12 @@ class DataTransformation:
 
             transformed_data_path = self.config.transformed_data_path
             self.data.to_excel(transformed_data_path, index=False)
+            
+            joblib.dump(
+                transformed_data,
+                self.config.transformed_data_obj_file_path
+            )
+
             logger.info(f"Transformed dataset saved at : {transformed_data_path}")
         except Exception as e:
             logger.error(f"Saving transformed dataset failed: {e}")
@@ -315,7 +358,7 @@ class DataTransformation:
             ## Clean currency from columns for transformation and update the datatype from object to numeric
             self.convert_object_to_numeric()      
 
-            ## Create Preprocessor Pipeline with Knn Imputer, Power transformer and Rosbust scaling with PCA
+            ## Create Preprocessor Pipeline with Knn Imputer, Log transformer and Standard scaling with PCA
             self.transform_data()   
 
             transformed_data, pipeline = self.transform_data()

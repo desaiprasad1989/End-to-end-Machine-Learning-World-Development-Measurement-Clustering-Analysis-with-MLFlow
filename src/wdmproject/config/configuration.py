@@ -2,7 +2,8 @@ from wdmproject.constants import *
 from wdmproject.utils.common import read_yaml, create_directories
 from wdmproject.entity.config_entity import(DataIngestionConfig,
                                             DataValidationConfig,
-                                            DataTransformationConfig)
+                                            DataTransformationConfig,
+                                            ModelTrainerConfig)
 
 
 class ConfigurationManager:
@@ -76,7 +77,27 @@ class ConfigurationManager:
             data_path=Path(config.data_path),
             transformed_data_path=Path(config.transformed_data_path),
             preprocessor_obj_file_path=Path(config.preprocessor_obj_file_path),
+            transformed_data_obj_file_path=Path(config.transformed_data_obj_file_path),
             TRANSFORMATION_REPORT=Path(config.TRANSFORMATION_REPORT)
         )
 
         return data_transformation_config
+    
+    #-------------------------------------------------------
+    # Model Trainer related configuration
+    #-------------------------------------------------------
+
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        config = self.config.model_trainer
+        params = self.params.model_training
+
+        create_directories([config.root_dir])
+
+        model_trainer_config = ModelTrainerConfig(
+            root_dir=Path(config.root_dir),
+            transformed_data_path=Path(config.transformed_data_path),
+            model_params=params,
+            TRAINING_REPORT=Path(config.TRAINING_REPORT)
+        )
+
+        return model_trainer_config
