@@ -37,5 +37,6 @@ class DataTransformationConfig:
 class ModelTrainerConfig:
     root_dir: Path
     transformed_data_path: Path 
-    model_params: dict
+    params_path: Path
     TRAINING_REPORT: Path
+    

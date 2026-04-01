@@ -2,9 +2,9 @@
     "stage_metadata": {
         "stage_name": "Model Trainer",
         "stage_status": "Success",
-        "start_time": "2026-04-01 16:50:01.177128",
-        "end_time": "2026-04-01 16:50:45.449072",
-        "stage_duration": 44.271944
+        "start_time": "2026-04-01 18:34:02.303508",
+        "end_time": "2026-04-01 18:35:49.207097",
+        "stage_duration": 106.903589
     },
     "dataset_load": {
         "status": "Success",
@@ -13,27 +13,251 @@
         "nan_values": 0,
         "inf_values": 0
     },
-    "k_means": {
+    "kmeans_{'n_clusters': 2, 'n_init': 10, 'random_state': 42}": {
+        "silhouete_score": 0.2908622349708038,
+        "n_clusters": 2
+    },
+    "kmeans_{'n_clusters': 2, 'n_init': 20, 'random_state': 42}": {
+        "silhouete_score": 0.2908622349708038,
+        "n_clusters": 2
+    },
+    "kmeans_{'n_clusters': 2, 'n_init': 50, 'random_state': 42}": {
+        "silhouete_score": 0.2908622349708038,
+        "n_clusters": 2
+    },
+    "kmeans_{'n_clusters': 3, 'n_init': 10, 'random_state': 42}": {
+        "silhouete_score": 0.22761293888254158,
+        "n_clusters": 3
+    },
+    "kmeans_{'n_clusters': 3, 'n_init': 20, 'random_state': 42}": {
+        "silhouete_score": 0.22771412129589694,
+        "n_clusters": 3
+    },
+    "kmeans_{'n_clusters': 3, 'n_init': 50, 'random_state': 42}": {
+        "silhouete_score": 0.22771412129589694,
+        "n_clusters": 3
+    },
+    "kmeans_{'n_clusters': 4, 'n_init': 10, 'random_state': 42}": {
         "silhouete_score": 0.21903471932947202,
         "n_clusters": 4
     },
-    "hierarchical": {
+    "kmeans_{'n_clusters': 4, 'n_init': 20, 'random_state': 42}": {
+        "silhouete_score": 0.21903471932947202,
+        "n_clusters": 4
+    },
+    "kmeans_{'n_clusters': 4, 'n_init': 50, 'random_state': 42}": {
+        "silhouete_score": 0.21903471932947202,
+        "n_clusters": 4
+    },
+    "kmeans_{'n_clusters': 5, 'n_init': 10, 'random_state': 42}": {
+        "silhouete_score": 0.19508307295826222,
+        "n_clusters": 5
+    },
+    "kmeans_{'n_clusters': 5, 'n_init': 20, 'random_state': 42}": {
+        "silhouete_score": 0.19598775671389165,
+        "n_clusters": 5
+    },
+    "kmeans_{'n_clusters': 5, 'n_init': 50, 'random_state': 42}": {
+        "silhouete_score": 0.19598775671389165,
+        "n_clusters": 5
+    },
+    "kmeans_{'n_clusters': 6, 'n_init': 10, 'random_state': 42}": {
+        "silhouete_score": 0.18220764612119253,
+        "n_clusters": 6
+    },
+    "kmeans_{'n_clusters': 6, 'n_init': 20, 'random_state': 42}": {
+        "silhouete_score": 0.19974309920047517,
+        "n_clusters": 6
+    },
+    "kmeans_{'n_clusters': 6, 'n_init': 50, 'random_state': 42}": {
+        "silhouete_score": 0.19928506190929648,
+        "n_clusters": 6
+    },
+    "hierarchical_{'n_clusters': 2, 'linkage': 'ward'}": {
+        "silhouete_score": 0.2645486259261711,
+        "n_clusters": 2
+    },
+    "hierarchical_{'n_clusters': 2, 'linkage': 'average'}": {
+        "silhouete_score": 0.6443934211176433,
+        "n_clusters": 2
+    },
+    "hierarchical_{'n_clusters': 2, 'linkage': 'complete'}": {
+        "silhouete_score": 0.6443934211176433,
+        "n_clusters": 2
+    },
+    "hierarchical_{'n_clusters': 3, 'linkage': 'ward'}": {
+        "silhouete_score": 0.20181642728438498,
+        "n_clusters": 3
+    },
+    "hierarchical_{'n_clusters': 3, 'linkage': 'average'}": {
+        "silhouete_score": 0.3515642376570331,
+        "n_clusters": 3
+    },
+    "hierarchical_{'n_clusters': 3, 'linkage': 'complete'}": {
+        "silhouete_score": 0.26378426440789765,
+        "n_clusters": 3
+    },
+    "hierarchical_{'n_clusters': 4, 'linkage': 'ward'}": {
         "silhouete_score": 0.18029236397045492,
         "n_clusters": 4
     },
-    "dbscan": {
+    "hierarchical_{'n_clusters': 4, 'linkage': 'average'}": {
+        "silhouete_score": 0.3125415410766449,
+        "n_clusters": 4
+    },
+    "hierarchical_{'n_clusters': 4, 'linkage': 'complete'}": {
+        "silhouete_score": 0.19211767203579933,
+        "n_clusters": 4
+    },
+    "hierarchical_{'n_clusters': 5, 'linkage': 'ward'}": {
+        "silhouete_score": 0.15929263694913726,
+        "n_clusters": 5
+    },
+    "hierarchical_{'n_clusters': 5, 'linkage': 'average'}": {
+        "silhouete_score": 0.21229434768253347,
+        "n_clusters": 5
+    },
+    "hierarchical_{'n_clusters': 5, 'linkage': 'complete'}": {
+        "silhouete_score": 0.16975431097557064,
+        "n_clusters": 5
+    },
+    "hierarchical_{'n_clusters': 6, 'linkage': 'ward'}": {
+        "silhouete_score": 0.15033516342552847,
+        "n_clusters": 6
+    },
+    "hierarchical_{'n_clusters': 6, 'linkage': 'average'}": {
+        "silhouete_score": 0.17636753071922007,
+        "n_clusters": 6
+    },
+    "hierarchical_{'n_clusters': 6, 'linkage': 'complete'}": {
+        "silhouete_score": 0.16769501212663576,
+        "n_clusters": 6
+    },
+    "dbscan_{'eps': 0.3, 'min_samples': 3}": {
+        "silhouete_score": -0.40993050425449096,
+        "n_clusters": 94
+    },
+    "dbscan_{'eps': 0.3, 'min_samples': 5}": {
+        "silhouete_score": -0.39951873256464276,
+        "n_clusters": 16
+    },
+    "dbscan_{'eps': 0.3, 'min_samples': 10}": {
+        "silhouete_score": -0.2401511437390462,
+        "n_clusters": 4
+    },
+    "dbscan_{'eps': 0.5, 'min_samples': 3}": {
+        "silhouete_score": -0.11029569415810414,
+        "n_clusters": 261
+    },
+    "dbscan_{'eps': 0.5, 'min_samples': 5}": {
         "silhouete_score": -0.3911117996879886,
         "n_clusters": 38
     },
-    "meanshift": {
+    "dbscan_{'eps': 0.5, 'min_samples': 10}": {
+        "silhouete_score": -0.32637737507911463,
+        "n_clusters": 6
+    },
+    "dbscan_{'eps': 0.7, 'min_samples': 3}": {
+        "silhouete_score": 0.11414457903137773,
+        "n_clusters": 359
+    },
+    "dbscan_{'eps': 0.7, 'min_samples': 5}": {
+        "silhouete_score": -0.30073121254914914,
+        "n_clusters": 84
+    },
+    "dbscan_{'eps': 0.7, 'min_samples': 10}": {
+        "silhouete_score": -0.3358035457562332,
+        "n_clusters": 8
+    },
+    "meanshift_{'cluster_all': True}": {
         "silhouete_score": 0.44652940897614746,
         "n_clusters": 3
     },
-    "gmm": {
+    "meanshift_{'cluster_all': False}": {
+        "silhouete_score": 0.1750186641275147,
+        "n_clusters": 4
+    },
+    "gmm_{'n_components': 2, 'covariance_type': 'full', 'random_state': 42}": {
+        "silhouete_score": 0.2551078540884624,
+        "n_clusters": 2
+    },
+    "gmm_{'n_components': 2, 'covariance_type': 'tied', 'random_state': 42}": {
+        "silhouete_score": 0.2648822517500606,
+        "n_clusters": 2
+    },
+    "gmm_{'n_components': 2, 'covariance_type': 'diag', 'random_state': 42}": {
+        "silhouete_score": 0.1909509450602616,
+        "n_clusters": 2
+    },
+    "gmm_{'n_components': 2, 'covariance_type': 'spherical', 'random_state': 42}": {
+        "silhouete_score": 0.2932949233207204,
+        "n_clusters": 2
+    },
+    "gmm_{'n_components': 3, 'covariance_type': 'full', 'random_state': 42}": {
+        "silhouete_score": 0.04627681037759814,
+        "n_clusters": 3
+    },
+    "gmm_{'n_components': 3, 'covariance_type': 'tied', 'random_state': 42}": {
+        "silhouete_score": 0.1729143461998671,
+        "n_clusters": 3
+    },
+    "gmm_{'n_components': 3, 'covariance_type': 'diag', 'random_state': 42}": {
+        "silhouete_score": 0.07129006548228717,
+        "n_clusters": 3
+    },
+    "gmm_{'n_components': 3, 'covariance_type': 'spherical', 'random_state': 42}": {
+        "silhouete_score": 0.2101679536296092,
+        "n_clusters": 3
+    },
+    "gmm_{'n_components': 4, 'covariance_type': 'full', 'random_state': 42}": {
         "silhouete_score": 0.04383200821327022,
         "n_clusters": 4
     },
-    "best_model": "meanshift",
-    "best_score": 0.44652940897614746,
-    "clusters": 3
+    "gmm_{'n_components': 4, 'covariance_type': 'tied', 'random_state': 42}": {
+        "silhouete_score": 0.1775778052673628,
+        "n_clusters": 4
+    },
+    "gmm_{'n_components': 4, 'covariance_type': 'diag', 'random_state': 42}": {
+        "silhouete_score": 0.1273385001518219,
+        "n_clusters": 4
+    },
+    "gmm_{'n_components': 4, 'covariance_type': 'spherical', 'random_state': 42}": {
+        "silhouete_score": 0.1911948680786462,
+        "n_clusters": 4
+    },
+    "gmm_{'n_components': 5, 'covariance_type': 'full', 'random_state': 42}": {
+        "silhouete_score": 0.030913195425018206,
+        "n_clusters": 5
+    },
+    "gmm_{'n_components': 5, 'covariance_type': 'tied', 'random_state': 42}": {
+        "silhouete_score": 0.1602922275210401,
+        "n_clusters": 5
+    },
+    "gmm_{'n_components': 5, 'covariance_type': 'diag', 'random_state': 42}": {
+        "silhouete_score": 0.0500493174672116,
+        "n_clusters": 5
+    },
+    "gmm_{'n_components': 5, 'covariance_type': 'spherical', 'random_state': 42}": {
+        "silhouete_score": 0.17783353961700468,
+        "n_clusters": 5
+    },
+    "gmm_{'n_components': 6, 'covariance_type': 'full', 'random_state': 42}": {
+        "silhouete_score": 0.03744305694945773,
+        "n_clusters": 6
+    },
+    "gmm_{'n_components': 6, 'covariance_type': 'tied', 'random_state': 42}": {
+        "silhouete_score": 0.14921323413935308,
+        "n_clusters": 6
+    },
+    "gmm_{'n_components': 6, 'covariance_type': 'diag', 'random_state': 42}": {
+        "silhouete_score": 0.08514645171764754,
+        "n_clusters": 6
+    },
+    "gmm_{'n_components': 6, 'covariance_type': 'spherical', 'random_state': 42}": {
+        "silhouete_score": 0.16954943437565656,
+        "n_clusters": 6
+    },
+    "best_model": "hierarchical_{'n_clusters': 2, 'linkage': 'average'}",
+    "best_score": 0.6443934211176433,
+    "clusters": 2
 }

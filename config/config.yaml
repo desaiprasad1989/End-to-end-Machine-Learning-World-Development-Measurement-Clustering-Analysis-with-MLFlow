@@ -36,6 +36,7 @@ data_transformation:
 model_trainer:
     root_dir: artifacts/model_trainer/models
     transformed_data_path: artifacts/data_transformation/transformed_data.pkl
+    params_path: params.yaml
     #trained_model_file_path : artifacts/model_trainer/models/model.pkl
     TRAINING_REPORT: artifacts/model_trainer/training_report.json
 

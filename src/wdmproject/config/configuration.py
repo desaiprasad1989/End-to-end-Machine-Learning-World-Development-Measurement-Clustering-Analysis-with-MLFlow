@@ -89,14 +89,14 @@ class ConfigurationManager:
 
     def get_model_trainer_config(self) -> ModelTrainerConfig:
         config = self.config.model_trainer
-        params = self.params.model_training
+        #params = self.params.model_training
 
         create_directories([config.root_dir])
 
         model_trainer_config = ModelTrainerConfig(
             root_dir=Path(config.root_dir),
             transformed_data_path=Path(config.transformed_data_path),
-            model_params=params,
+            params_path=Path(config.params_path),
             TRAINING_REPORT=Path(config.TRAINING_REPORT)
         )
 

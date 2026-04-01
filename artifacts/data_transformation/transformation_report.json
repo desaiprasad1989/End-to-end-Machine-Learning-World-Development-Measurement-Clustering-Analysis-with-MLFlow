@@ -2,9 +2,9 @@
     "stage_metadata": {
         "stage_name": "Data Transformation",
         "stage_status": "Success",
-        "start_time": "2026-04-01 16:49:57.391031",
-        "end_time": "2026-04-01 16:50:01.144728",
-        "stage_duration": 3.753697
+        "start_time": "2026-04-01 18:33:58.428883",
+        "end_time": "2026-04-01 18:34:02.263549",
+        "stage_duration": 3.833667
     },
     "dataset_load": {
         "status": "Success",

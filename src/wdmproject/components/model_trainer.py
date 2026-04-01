@@ -12,6 +12,8 @@ from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_har
 import pickle, joblib
 from scipy import cluster
 from sklearn.cluster import dbscan
+import yaml
+from itertools import product
 
 from wdmproject.entity.config_entity import ModelTrainerConfig
 
@@ -20,6 +22,15 @@ class ModelTrainer:
         self.config = config
         self.data = None
         self.training_report = {}
+
+        # Load hyperparameters from PARAMS.yaml
+        try:
+            with open(self.config.params_path, "r") as f:
+                self.model_params = yaml.safe_load(f)
+            logger.info(f"Loaded model params from {self.config.params_path}")
+        except Exception as e:
+            logger.error(f"Failed to load PARAMS.yaml: {e}")
+            raise e
         
 
     ## Load transformed data for training
@@ -29,7 +40,7 @@ class ModelTrainer:
 
             X = joblib.load(self.config.transformed_data_path)           
             
-            logger.info(f"Transformed data loaded: {X.shape}")
+            #logger.info(f"Transformed data loaded: {X.shape}")
             
 
             nan_count = np.isnan(X).sum()
@@ -101,62 +112,58 @@ class ModelTrainer:
     ## Training all clustering models
     def train_models(self, X):
         try:
-            params = self.config.model_params
-
-            models = {
-
-                "k_means": KMeans(
-                    n_clusters=params.kmeans.n_clusters,
-                    random_state=params.kmeans.random_state,
-                    n_init=params.kmeans.n_init
-                ),
-
-                "hierarchical": AgglomerativeClustering(
-                    n_clusters=params.hierarchical.n_clusters,
-                    linkage=params.hierarchical.linkage
-                ),
-
-                "dbscan": DBSCAN(
-                    eps=params.dbscan.eps,
-                    min_samples=params.dbscan.min_samples
-                ),
-
-                "meanshift": MeanShift(
-                    cluster_all=params.meanshift.cluster_all                
-                ),
-
-                "gmm": GaussianMixture(
-                    n_components=params.gmm.n_components,
-                    random_state=params.gmm.random_state 
-                )
-            }
+            params = self.model_params
 
             best_score = -1
             best_model = None
             best_model_name = None
-            best_labels= None
+            best_labels = None
 
-            for name, model in models.items():
+            for model_name, param_grid in params.items():
 
-                logger.info(f"Training {name} model")
+                keys = list(param_grid.keys())
+                values = list(param_grid.values())
+                
+                for combination in product(*values):
+                    params = dict(zip(keys, combination))
 
-                score, labels = self.evaluate_models(model, X, name)
+                    if model_name == "kmeans":
+                        model = KMeans(**params)
 
-                if score > best_score:
+                    elif model_name == "hierarchical":
+                        model = AgglomerativeClustering(**params)
 
-                    best_score = score
-                    best_model = model
-                    best_model_name = name
-                    best_labels=labels
-            
+                    elif model_name == "dbscan":
+                        model = DBSCAN(**params)
+                    
+                    elif model_name == "meanshift":
+                        model = MeanShift(**params)
+
+                    elif model_name == "gmm":
+                        model = GaussianMixture(**params)
+
+                    else:
+                        continue
+
+
+                    model_label = f"{model_name}_{params}"
+
+                    score, labels = self.evaluate_models(model, X, model_label)
+
+                    if score > best_score:
+                        best_score = score 
+                        best_model = model
+                        best_model_name = model_label
+                        best_labels = labels
+
             self.training_report["best_model"] = best_model_name
             self.training_report["best_score"] = float(best_score)
             self.training_report["clusters"] = len(set(best_labels))
 
             return best_model
-        
+
         except Exception as e:
-            logger.error(f"Training Models Failed : {str(e)}")
+            logger.error(f"Training Models Failed: {e}")
             raise e
             
 
@@ -195,7 +202,7 @@ class ModelTrainer:
 
             ## Loading Dataset
             X = self.load_transformed_data()
-            print(X)
+            #print(X)
             ## model_trainer
             self.train_models(X)
 
